@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% load static %}
+
+{% block title %}New Post{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blogs/css/new_post.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <h1>Create a New Blog Post</h1>
+
+    <form method="post" class="form-card">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn-primary">Publish</button>
+    </form>
+</div>
+{% endblock %}

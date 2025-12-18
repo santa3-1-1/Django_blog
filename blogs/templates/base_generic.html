@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Blog{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'blogs/css/styles.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <!-- Logo -->
+            <a href="{% url 'home' %}" class="navbar-logo">Blog</a>
+
+            <!-- Navigation Menu -->
+            <ul class="navbar-menu">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+
+<footer>
+    <p>&copy; 2025 Blog Website</p>
+</footer>
+
+{% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blogs/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ user.username }}'s Profile</h1>
+
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Joined:</strong> {{ user.date_joined }}</p>
+
+    <h2>Your Blog Posts</h2>
+
+    <ul class="list-group">
+        {% for post in posts %}
+            <li class="list-group-item">
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.text|truncatewords:30 }}</p>
+                <p><em>Posted on: {{ post.date_added }}</em></p>
+                <a href="{% url 'edit_post' post.pk %}">Edit</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item">
+                You have no blog posts yet.
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

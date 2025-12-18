@@ -1,0 +1,67 @@
+{% extends 'base_generic.html' %}
+
+{% load static %}
+
+{% block title %}Blog Home{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'blogs/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<h1>All Blog Posts</h1>
+
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}!</p>
+    <a href="{% url 'new_post' %}">Create a new post</a>
+{% else %}
+    <p>
+        <a href="{% url 'login' %}">Login</a> or
+        <a href="{% url 'signup' %}">Sign up</a>
+    </p>
+{% endif %}
+
+<div class="post-list">
+    {% for post in page_obj %}
+        <div class="post-card">
+            <h2 class="post-title">{{ post.title }}</h2>
+
+            <p class="post-excerpt">
+                {{ post.text|truncatewords:40 }}
+            </p>
+
+            <p class="post-meta">
+                Posted on {{ post.date_added }}
+            </p>
+
+            {% if post.user == user %}
+                <div class="post-actions">
+                    <a href="{% url 'edit_post' post.pk %}">Edit</a>
+                    <a href="{% url 'delete_post' post.pk %}">Delete</a>
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% endblock %}

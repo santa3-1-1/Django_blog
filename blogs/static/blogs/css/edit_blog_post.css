@@ -1,0 +1,85 @@
+/* edit_blog_post.css */
+
+/* 页面背景色和字体 */
+body {
+    background-color: #FFF8E1; /* 浅黄色背景 */
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* 页面容器 */
+.container {
+    background-color: #FFFFFF; /* 白色背景 */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* 主标题 */
+h1 {
+    color: #FF9800; /* 橙色标题 */
+    font-size: 36px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* 表单样式 */
+form {
+    margin-top: 20px;
+}
+
+/* 输入框样式 */
+form input, form select, form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #FFEB3B; /* 黄色边框 */
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #FFFAE0; /* 淡黄色背景 */
+}
+
+form input:focus, form select:focus, form textarea:focus {
+    border-color: #FF9800; /* 橙色聚焦边框 */
+    outline: none;
+}
+
+/* 按钮样式 */
+button {
+    background-color: #FF9800; /* 橙色按钮 */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #FF5722; /* 深橙色按钮 hover */
+}
+
+/* 提示文本 */
+form p {
+    font-size: 14px;
+    color: #777;
+}
+
+/* 响应式布局 */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    button {
+        padding: 12px 15px;
+    }
+}
